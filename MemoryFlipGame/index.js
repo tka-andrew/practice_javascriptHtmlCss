@@ -14,8 +14,9 @@ let matchedCards = 0;
 let disableDeck = false;
 let isPlaying = false;
 let cardOne, cardTwo, timer;
-let cardTypes = ["bxl-facebook-circle", "bxl-adobe", "bxl-google", "bxl-twitter", "bxl-whatsapp", "bxl-linkedin-square", "bxl-skype",
-"bxl-airbnb"];
+const cardTypes = ["bxl-facebook-circle", "bxl-adobe", "bxl-google", "bxl-twitter", "bxl-whatsapp", "bxl-linkedin-square", "bxl-skype",
+"bxl-airbnb", "bxl-meta", "bxl-tiktok", "bxl-sketch", "bxl-steam", "bxl-trip-advisor", "bxl-unity",
+"bxl-discord-alt", "bxl-instagram-alt"];
 
 function initTimer() {
     if (timeLeft <= 0) {
@@ -84,7 +85,9 @@ function shuffleCards() {
     flipsTag.innerText = flips;
     disableDeck = isPlaying = false;
 
-    let cardDecks = cardTypes.concat(cardTypes);
+    let randomCardTypes = cardTypes;
+    randomCardTypes = randomCardTypes.sort(() => Math.random() > 0.5 ? 1 : -1).slice(totalPairs);
+    let cardDecks = randomCardTypes.concat(randomCardTypes);
     cardDecks.sort(() => Math.random() > 0.5 ? 1 : -1);
     cards.forEach((card, index) => {
         card.classList.remove("flip");
